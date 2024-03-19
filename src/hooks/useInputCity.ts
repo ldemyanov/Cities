@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { ALL_CITIES } from "../shared/cities";
+import { LOWER_CASE_CITIES } from "../shared/cities";
 import { Player } from "../store/game.slice";
+import { capitalize } from "../shared/functions/capitalize";
 
 type UseInputCity = (
   inputRef: React.RefObject<HTMLInputElement>,
@@ -19,10 +20,10 @@ export const useInputCity: UseInputCity = (inputRef, currentSymbol, cities, hand
   const [error, setError] = useState("");
 
   const handleButtonSend = () => {
-    const city = inputRef.current?.value;
+    const city = inputRef.current?.value.trim().toLowerCase();
 
     if (city && city.length > 0) {
-      inputRef.current.value = "";
+      inputRef.current!.value = "";
 
       if (currentSymbol && city[0] !== currentSymbol) {
         return setError(`Нужно ввести город начинающийся с буквы ${currentSymbol}`);
@@ -32,11 +33,11 @@ export const useInputCity: UseInputCity = (inputRef, currentSymbol, cities, hand
         return setError(`Город ${city[0]} уже назван`);
       }
 
-      if (!ALL_CITIES.includes(city)) {
+      if (!LOWER_CASE_CITIES.includes(city)) {
         return setError(`Город ${city} не найден`);
       }
 
-      handleAddCity(city)
+      handleAddCity(capitalize(city))
       setError("");
     }
   };
