@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { ALL_CITIES } from "../shared/cities";
-import { Player } from "../app/store/game.slice";
+import { Player } from "../store/game.slice";
 import { randomArrayItem } from "../shared/functions/randomArrayItem";
 import { getAnswerTime } from "../shared/functions/getAnswerTime";
 

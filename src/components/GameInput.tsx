@@ -1,8 +1,8 @@
-import { useAppDispatch, useAppSelector } from "../app/store";
+import { useAppDispatch, useAppSelector } from "../store";
 import { useCallback, useRef } from "react";
 import { useComputerInput } from "../hooks/useComputerInput";
 import { useInputCity } from "../hooks/useInputCity";
-import { addCity, finishGame } from "../app/store/game.slice";
+import { addCity, finishGame } from "../store/game.slice";
 import { getPlaceholder } from "../shared/functions/getPlaceholder";
 import ButtonSend from "./ButtonSend";
 import clsx from "clsx";

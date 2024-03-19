@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useAppSelector } from "../app/store";
+import { useAppSelector } from "../store";
 import GameContainer from "./GameContainer";
 import GameDescription from "./GameDescription";
 import Win from "./Win";

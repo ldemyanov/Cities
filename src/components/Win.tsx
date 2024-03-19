@@ -1,8 +1,8 @@
 import clsx from "clsx";
-import { useAppDispatch, useAppSelector } from "../app/store";
-import { Winner, startGame } from "../app/store/game.slice";
+import { useAppDispatch, useAppSelector } from "../store";
+import { Winner, startGame } from "../store/game.slice";
 import Button from "./Button";
-import { selectCountCities, selectGameDuration, selectLastCity } from "../app/store/game.selectors";
+import { selectEndInfo } from "../store/game.selectors";
 
 type WinProps = {
   winner: Winner;
@@ -11,9 +11,7 @@ type WinProps = {
 const Win = ({ winner }: WinProps) => {
   const dispatch = useAppDispatch();
 
-  const lastCity = useAppSelector(selectLastCity);
-  const countCities = useAppSelector(selectCountCities);
-  const gameDuration = useAppSelector(selectGameDuration);
+  const { countCities, duration, lastCity } = useAppSelector(selectEndInfo);
 
   const handleStartGame = () => dispatch(startGame());
 
@@ -51,7 +49,7 @@ const Win = ({ winner }: WinProps) => {
           "text-red-600": winner === "computer",
         })}
       >
-        {gameDuration}
+        {duration}
       </p>
 
       <p className="text-xl text-center">

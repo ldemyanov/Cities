@@ -26,5 +26,5 @@ export const getAnswerTime = (step: number): number => {
     i++;
   }
 
-  return randomArrayItem(probabilityArray[i].answers);
+  return randomArrayItem(probabilityArray[i].answers) * 1000;
 }

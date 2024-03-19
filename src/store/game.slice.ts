@@ -1,15 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { getLastSymbolOfCity } from '../../shared/functions/getLastSymbolOfCity';
-import { capitalize } from '../../shared/functions/capitalize';
-
+import { getLastSymbolOfCity } from '../shared/functions/getLastSymbolOfCity';
+import { capitalize } from '../shared/functions/capitalize';
 
 export type Player = "player" | "computer";
 export type Winner = Player | "";
 
 type GameState = {
   isGame: boolean;
-  isYourStep: boolean;
   cities: string[],
   currentSymbol: string,
   currentPlayer: Player,
@@ -22,7 +20,6 @@ const initialState: GameState = {
   isGame: false,
   startTime: 0,
   endTime: 0,
-  isYourStep: true,
   cities: [],
   currentSymbol: "",
   currentPlayer: "player",
@@ -35,7 +32,6 @@ const gameSlice = createSlice({
   reducers: {
     addCity: (state, { payload }: PayloadAction<string>) => {
       const city = capitalize(payload);
-      state.isYourStep = !state.isYourStep;
       state.cities.push(city);
       state.currentSymbol = getLastSymbolOfCity(city);
       state.currentPlayer = state.currentPlayer === "player" ? "computer" : "player";
@@ -49,13 +45,12 @@ const gameSlice = createSlice({
       state.winner = "";
     },
     finishGame: (state) => {
-      state.winner = state.isYourStep ? "computer" : "player";
+      state.winner = state.currentPlayer === "player" ? "computer" : "player";
       state.isGame = false;
       state.endTime = Date.now();
     }
   },
 })
-
 
 export const { addCity, startGame, finishGame } = gameSlice.actions;
 

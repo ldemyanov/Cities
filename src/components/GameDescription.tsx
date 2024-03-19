@@ -1,5 +1,5 @@
-import { useAppDispatch } from "../app/store";
-import { startGame } from "../app/store/game.slice";
+import { useAppDispatch } from "../store";
+import { startGame } from "../store/game.slice";
 import Button from "./Button";
 
 const GameDescription = () => {

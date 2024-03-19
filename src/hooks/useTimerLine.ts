@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { Player } from "../app/store/game.slice";
+import { Player } from "../store/game.slice";
 import { formatMsToPercent } from "../shared/functions/formatMsToPercent";
 import { formatMsToString } from "../shared/functions/formatMsToString";
+import { SECONDS_BEFORE_GAME_OVER } from "../shared/constants";
 
 type UseTimerLineProps = {
   player: Player,
@@ -32,7 +33,7 @@ const useTimerLine = ({ player, onFinish, timerLineRef, finishTime }: UseTimerLi
         onFinish()
       }
 
-      timerLineRef.current!.style.width = `${formatMsToPercent(progress)}%`;
+      timerLineRef.current!.style.width = `${formatMsToPercent(progress, SECONDS_BEFORE_GAME_OVER)}%`;
       setTime(formatMsToString(progress));
     }, timeStep);
 
