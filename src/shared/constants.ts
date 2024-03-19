@@ -1,1 +1,0 @@
-export const SECONDS_BEFORE_GAME_OVER = 120;
