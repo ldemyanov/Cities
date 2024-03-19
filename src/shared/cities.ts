@@ -74,6 +74,7 @@ export const ALL_CITIES = [
   "Губкин",
   "Гудермес",
   "Гуково",
+  "Гусиноозерск",
   "Гусь-Хрустальный",
   "Дербент",
   "Дзержинск",
@@ -326,4 +327,4 @@ export const ALL_CITIES = [
   "Ярославль"
 ]
 
-export const LOWER_CASE_CITIES = ALL_CITIES.map((city) => city.toLowerCase());
+export const LOWER_CASE_ALL_CITIES = ALL_CITIES.map((city) => city.toLowerCase());
