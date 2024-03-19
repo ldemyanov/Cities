@@ -26,6 +26,9 @@ const GameInput = () => {
 
   return (
     <div className="mt-auto p-4">
+      {cities.length > 0 && (
+        <div className="text-center text-gray-500 py-1 mb-2 text-sm">Всего перечислено городов: {cities.length}</div>
+      )}
       <div className="relative">
         <input
           ref={inputRef}
