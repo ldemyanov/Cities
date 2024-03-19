@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ALL_CITIES } from "../shared/cities";
+import { Player } from "../store/game.slice";
 
 type UseInputCity = (
   inputRef: React.RefObject<HTMLInputElement>,
   currentSymbol: string,
   cities: string[],
   handleAddCity: (city: string) => void,
+  currentPlayer: Player
 ) => {
   onEnter: (event: React.KeyboardEvent<HTMLInputElement>) => void,
   handleButtonSend: () => void,
@@ -13,7 +15,7 @@ type UseInputCity = (
 };
 
 
-export const useInputCity: UseInputCity = (inputRef, currentSymbol, cities, handleAddCity) => {
+export const useInputCity: UseInputCity = (inputRef, currentSymbol, cities, handleAddCity, currentPlayer) => {
   const [error, setError] = useState("");
 
   const handleButtonSend = () => {
@@ -38,6 +40,12 @@ export const useInputCity: UseInputCity = (inputRef, currentSymbol, cities, hand
       setError("");
     }
   };
+
+  useEffect(() => {
+    if (currentPlayer === "player" && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [currentPlayer, inputRef])
 
   const onEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {

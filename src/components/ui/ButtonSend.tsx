@@ -9,8 +9,9 @@ type ButtonSendProps = {
 const ButtonSend = ({ className, disabled, onClick }: ButtonSendProps) => {
   return (
     <button
-      className={clsx("w-8 h-8 border border-red grid place-items-center bg-violet-500 rounded-md", className, {
+      className={clsx("w-8 h-8 border border-red grid place-items-center rounded-md", className, {
         "bg-gray-400": disabled,
+        "bg-violet-500 hover:bg-violet-600": !disabled,
       })}
       disabled={disabled}
       onClick={onClick}

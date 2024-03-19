@@ -14,7 +14,13 @@ const GameInput = () => {
   const handleAddCity = useAddCity();
   const handleLoseGame = useLoseGame();
 
-  const { handleButtonSend, onEnter, error } = useInputCity(inputRef, currentSymbol, cities, handleAddCity);
+  const { handleButtonSend, onEnter, error } = useInputCity(
+    inputRef,
+    currentSymbol,
+    cities,
+    handleAddCity,
+    currentPlayer
+  );
 
   useComputerInput(currentPlayer, currentSymbol, cities, handleAddCity, handleLoseGame);
 
@@ -31,6 +37,7 @@ const GameInput = () => {
           })}
           onKeyDown={onEnter}
           placeholder={error || getPlaceholder(currentPlayer, currentSymbol)}
+          disabled={currentPlayer === "computer"}
           required
         />
         <ButtonSend
