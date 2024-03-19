@@ -1,30 +1,26 @@
-# React + TypeScript + Vite
+# Игра в города
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+Для запуска проекта локально необходимо установить все зависимости и выполнить команду `npm run dev`
+```bash
+npm install
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Игра написана с использованием:
+- vite
+- typescript
+- react
+- redux-toolkit (В процессе разработки понял, что можно здесь можно обойтись использованием React Context, но уже не стал переделывать)
+
+Комментарии по выполнению задания:
+- Всю сложную логику я вынес в кастомные хуки **src/hooks/**
+- Вспомогательные функции в **src/shared/functions/** 
+- React Компоненты **src/components/**. Постарался их сделать как можно более читаемыми.
+- Логику связанную с redux вынес в папку store.
+- Таймер и заполнение прогресс бара реализовал через setTimeout на 1 секунду, понимаю что время таким образом не самое точное, но зато быстро и просто.
+- Задержка времени ответа также через setTimeout.
+- Генерацию времени ответа компьютера реализовал в функции **src/shared/functions/getAnswerTime.ts**. С каждым последующим ходом время хода компьютера немного начинает возрастать.
+- Не нашёл в макете вывода ошибок при валидации, поэтому их поместил в input placeholder.
+
+P.S.
+Возможно есть проблема с шрифтами. Этот момент доработаю
