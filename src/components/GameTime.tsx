@@ -1,5 +1,5 @@
 import { useCallback, useRef } from "react";
-import TimerLine from "./TimerLine";
+import TimerLine from "./ui/TimerLine";
 import { finishGame } from "../store/game.slice";
 import { useAppDispatch, useAppSelector } from "../store";
 import { SECONDS_BEFORE_GAME_OVER } from "../shared/constants";

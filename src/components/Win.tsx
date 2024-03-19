@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { useAppDispatch, useAppSelector } from "../store";
 import { Winner, startGame } from "../store/game.slice";
-import Button from "./Button";
+import Button from "./ui/Button";
 import { selectEndInfo } from "../store/game.selectors";
 
 type WinProps = {

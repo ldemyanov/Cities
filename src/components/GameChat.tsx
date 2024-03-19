@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useAppSelector } from "../store";
-import Message from "./Message";
+import Message from "./ui/Message";
 import { useAutoScrollDown } from "../hooks/useAutoScrollDown";
 
 const GameChat = () => {

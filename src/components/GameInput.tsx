@@ -4,7 +4,7 @@ import { useComputerInput } from "../hooks/useComputerInput";
 import { useInputCity } from "../hooks/useInputCity";
 import { addCity, finishGame } from "../store/game.slice";
 import { getPlaceholder } from "../shared/functions/getPlaceholder";
-import ButtonSend from "./ButtonSend";
+import ButtonSend from "./ui/ButtonSend";
 import clsx from "clsx";
 
 const GameInput = () => {
