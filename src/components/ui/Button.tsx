@@ -11,7 +11,7 @@ const Button = ({ onClick, text, className }: ButtonProps) => {
     <button
       type="button"
       className={clsx(
-        "text-base italic px-5 py-2.5 mx-auto text-white bg-violet-600 hover:bg-violet-700 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm focus:outline-none",
+        "text-base px-5 py-2.5 mx-auto text-white bg-violet-600 hover:bg-violet-700 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm focus:outline-none",
         className
       )}
       onClick={onClick}

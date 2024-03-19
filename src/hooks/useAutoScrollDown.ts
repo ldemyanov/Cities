@@ -10,6 +10,6 @@ export const useAutoScrollDown: UseAutoScrollDown = (ref, dependencies) => {
     if (ref.current) {
       ref.current.scrollTop = ref.current.scrollHeight;
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencies);
 }

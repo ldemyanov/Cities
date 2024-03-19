@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ALL_CITIES } from "../shared/cities";
 
 type UseInputCity = (
@@ -8,25 +9,33 @@ type UseInputCity = (
 ) => {
   onEnter: (event: React.KeyboardEvent<HTMLInputElement>) => void,
   handleButtonSend: () => void,
+  error: string,
 };
 
 
 export const useInputCity: UseInputCity = (inputRef, currentSymbol, cities, handleAddCity) => {
+  const [error, setError] = useState("");
 
   const handleButtonSend = () => {
     const city = inputRef.current?.value;
 
     if (city && city.length > 0) {
-      const isCorrectFirstSymbol = !currentSymbol || city[0] === currentSymbol;
-      const isCorrectCity = !cities.includes(city) && ALL_CITIES.includes(city);
+      inputRef.current.value = "";
 
-      if (isCorrectFirstSymbol && isCorrectCity) {
-        handleAddCity(city)
-      } else {
-        alert("Попробуйте ещё раз");
+      if (currentSymbol && city[0] !== currentSymbol) {
+        return setError(`Нужно ввести город начинающийся с буквы ${currentSymbol}`);
       }
 
-      inputRef.current.value = "";
+      if (cities.includes(city)) {
+        return setError(`Город ${city[0]} уже назван`);
+      }
+
+      if (!ALL_CITIES.includes(city)) {
+        return setError(`Город ${city} не найден`);
+      }
+
+      handleAddCity(city)
+      setError("");
     }
   };
 
@@ -36,5 +45,5 @@ export const useInputCity: UseInputCity = (inputRef, currentSymbol, cities, hand
     }
   };
 
-  return { handleAddCity, handleButtonSend, onEnter }
+  return { handleAddCity, handleButtonSend, onEnter, error }
 }
