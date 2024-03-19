@@ -6,12 +6,12 @@ const GameDescription = () => {
 
   return (
     <>
-      <div className="h-16 grid place-items-center border-b-3 border-color-gray-100 font-bold">
+      <div className="h-16 grid place-items-center border-b-3 border-color-gray-100 font-bold prose">
         Игра в города на время
       </div>
       <div className="flex flex-col gap-6 p-6">
-        <p className="text-sm">Цель: Назвать как можно больше реальных городов.</p>
-        <ul className="list-disc ps-5 text-sm">
+        <p className="text-sm prose">Цель: Назвать как можно больше реальных городов.</p>
+        <ul className="list-disc ps-5 text-sm prose">
           <li>Запрещается повторение городов.</li>
           <li>
             Названий городов на твердый “ъ” и мягкий “ъ” знак нет. Из-за этого бы пропускаем эту букву и игрок должен
