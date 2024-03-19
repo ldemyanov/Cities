@@ -1,19 +1,17 @@
 import clsx from "clsx";
-import { useAppDispatch, useAppSelector } from "../store";
-import { Winner, startGame } from "../store/game.slice";
+import { useAppSelector } from "../store";
+import type { Winner } from "../store/game.slice";
 import Button from "./ui/Button";
 import { selectEndInfo } from "../store/game.selectors";
+import { useStartGame } from "../store/game.hooks";
 
 type WinProps = {
   winner: Winner;
 };
 
-const Win = ({ winner }: WinProps) => {
-  const dispatch = useAppDispatch();
-
+const GameWin = ({ winner }: WinProps) => {
   const { countCities, duration, lastCity } = useAppSelector(selectEndInfo);
-
-  const handleStartGame = () => dispatch(startGame());
+  const handleStartGame = useStartGame();
 
   const TitleText = () => {
     if (winner === "player") {
@@ -44,7 +42,7 @@ const Win = ({ winner }: WinProps) => {
       </p>
 
       <p
-        className={clsx("text-3xl text-center italic", {
+        className={clsx("text-3xl text-center font-bold", {
           "text-green-600": winner === "player",
           "text-red-600": winner === "computer",
         })}
@@ -62,7 +60,7 @@ const Win = ({ winner }: WinProps) => {
         <p className="text-xl text-center">
           Последний город названный победителем:
           <br />
-          <span className="inline-block text-2xl italic mt-1.5">{lastCity}</span>
+          <span className="inline-block text-2xl mt-2 font-bold">{lastCity}</span>
         </p>
       )}
 
@@ -71,4 +69,4 @@ const Win = ({ winner }: WinProps) => {
   );
 };
 
-export default Win;
+export default GameWin;

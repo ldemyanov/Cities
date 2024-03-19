@@ -1,23 +1,21 @@
-import { useAppDispatch, useAppSelector } from "../store";
-import { useCallback, useRef } from "react";
+import { useAppSelector } from "../store";
+import { useRef } from "react";
 import { useComputerInput } from "../hooks/useComputerInput";
 import { useInputCity } from "../hooks/useInputCity";
-import { addCity, finishGame } from "../store/game.slice";
 import { getPlaceholder } from "../shared/functions/getPlaceholder";
 import ButtonSend from "./ui/ButtonSend";
 import clsx from "clsx";
+import { useAddCity, useLoseGame } from "../store/game.hooks";
 
 const GameInput = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const currentPlayer = useAppSelector((state) => state.game.currentPlayer);
-  const currentSymbol = useAppSelector((state) => state.game.currentSymbol);
-  const cities = useAppSelector((state) => state.game.cities);
+  const { currentPlayer, currentSymbol, cities } = useAppSelector((state) => state.game);
 
-  const dispatch = useAppDispatch();
-  const handleAddCity = useCallback((city: string) => dispatch(addCity(city)), [dispatch]);
-  const handleLoseGame = useCallback(() => dispatch(finishGame()), [dispatch]);
+  const handleAddCity = useAddCity();
+  const handleLoseGame = useLoseGame();
 
-  const { handleButtonSend, onEnter } = useInputCity(inputRef, currentSymbol, cities, handleAddCity);
+  const { handleButtonSend, onEnter, error } = useInputCity(inputRef, currentSymbol, cities, handleAddCity);
+
   useComputerInput(currentPlayer, currentSymbol, cities, handleAddCity, handleLoseGame);
 
   return (
@@ -29,9 +27,10 @@ const GameInput = () => {
           id="default-search"
           className={clsx("block w-full p-4 ps-4 text-sm text-gray-900 border-0 rounded-lg bg-gray-100", {
             "placeholder:text-black": currentPlayer === "player",
+            "placeholder:text-red-400": !!error,
           })}
           onKeyDown={onEnter}
-          placeholder={getPlaceholder(currentPlayer, currentSymbol)}
+          placeholder={error || getPlaceholder(currentPlayer, currentSymbol)}
           required
         />
         <ButtonSend
