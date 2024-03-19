@@ -1,8 +1,12 @@
 // import Preview from "../components/Preview";
-import Game from "../components/Game";
+import { store } from "./store";
+import { Provider } from "react-redux";
+import GameWindow from "../components/GameWindow";
 
 export default function App() {
   return (
-    <Game />
-  )
+    <Provider store={store}>
+      <GameWindow />
+    </Provider>
+  );
 }

@@ -2,24 +2,21 @@ import clsx from "clsx";
 
 type ButtonSendProps = {
   className?: string;
+  disabled?: boolean;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-const ButtonSend = ({ className }: ButtonSendProps) => {
+const ButtonSend = ({ className, disabled, onClick }: ButtonSendProps) => {
   return (
     <button
-      className={clsx(
-        "w-8 h-8 border border-red grid place-items-center bg-violet-500 rounded-md",
-        className
-      )}
+      className={clsx("w-8 h-8 border border-red grid place-items-center bg-violet-500 rounded-md", className, {
+        "bg-gray-400": disabled,
+      })}
+      disabled={disabled}
+      onClick={onClick}
     >
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 20 20"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <g clip-path="url(#clip0_7618_580)">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clipPath="url(#clip0_7618_580)">
           <path
             d="M8.33337 11.6667L17.5 2.5"
             stroke="white"
